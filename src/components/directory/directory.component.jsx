@@ -47,8 +47,9 @@ class Directory extends React.Component {
 
     render(){
                                                                         //destructured sections, so instead of doing section.title, etc...
-        return ( <div className='directory-menu'>{this.state.sections.map(({title, imageUrl, id, size}) => (
-            <MenuItem key={id} title={title} imageUrl={imageUrl} size={size}/>
+                           //the ...othersectionProps is used to replace putting all the other props as title, imageUrl, etc.. except for the id because it uses the key= insted of id=
+        return ( <div className='directory-menu'>{this.state.sections.map(({id, ...otherSectionProps}) => (
+            <MenuItem key={id} {...otherSectionProps}/>
             ) )}</div> 
         );
     }
