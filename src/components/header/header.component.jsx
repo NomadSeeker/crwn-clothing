@@ -6,6 +6,9 @@ import{ ReactComponent as Logo } from '../../assets/crown.svg';
 import {connect} from 'react-redux';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
+import {createStructuredSelector} from 'reselect';
+import{selectCartHidden} from '../../redux/cart/cart.selector';
+import {selectCurrentUser} from '../../redux/user/user.selectors';
 import CartIcon from '../cart-icon/cart-icon.component';
 
 
@@ -43,9 +46,10 @@ const mapStateToProps = state => ({
 })
 */
 
-const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
-    currentUser,
-    hidden
+//The sturcturedselector allows us to pass the state withoug having to make it a function and repeat the (user) on each prop
+const mapStateToProps = createStructuredSelector ({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps)(Header);
